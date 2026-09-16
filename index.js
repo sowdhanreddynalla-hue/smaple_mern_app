@@ -18,8 +18,10 @@ let app=express();
 
 
 let hrroutes=require("./routes/hr_route");
+let emprouter=require("./routes/emp_route")
 
 app.use("/api/hr",hrroutes);
+app.use("/api/emp",emprouter);
 
 
 
