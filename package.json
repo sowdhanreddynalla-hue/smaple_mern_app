@@ -1,0 +1,24 @@
+{
+  "name": "simple_mern_app",
+  "version": "1.0.0",
+  "description": "hrmangament",
+  "homepage": "https://github.com/Manoj-Pentala/Simple_mern_app1#readme",
+  "bugs": {
+    "url": "https://github.com/Manoj-Pentala/Simple_mern_app1/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Manoj-Pentala/Simple_mern_app1.git"
+  },
+  "license": "ISC",
+  "author": "manoj",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "mongodb": "^7.6.0"
+  }
+}
