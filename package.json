@@ -1,17 +1,17 @@
 {
-  "name": "simple_mern_app",
+  "name": "sample_mern_app",
   "version": "1.0.0",
-  "description": "hrmangament",
-  "homepage": "https://github.com/Manoj-Pentala/Simple_mern_app1#readme",
+  "description": "hrmanagement",
+  "homepage": "https://github.com/AKSHAY-0509/sample_mern_app#readme",
   "bugs": {
-    "url": "https://github.com/Manoj-Pentala/Simple_mern_app1/issues"
+    "url": "https://github.com/AKSHAY-0509/sample_mern_app/issues"
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/Manoj-Pentala/Simple_mern_app1.git"
+    "url": "git+https://github.com/AKSHAY-0509/sample_mern_app.git"
   },
   "license": "ISC",
-  "author": "manoj",
+  "author": "Akshay",
   "type": "commonjs",
   "main": "index.js",
   "scripts": {
@@ -19,6 +19,7 @@
   },
   "dependencies": {
     "express": "^5.2.1",
-    "mongodb": "^7.6.0"
+    "mongodb": "^7.6.0",
+    "mongoose": "^9.10.1"
   }
 }

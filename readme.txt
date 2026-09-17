@@ -1,1 +1,0 @@
-Sample_mern_App
