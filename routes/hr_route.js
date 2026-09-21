@@ -1,16 +1,29 @@
-let express=require('express');
+let express=require("express");
 let router=express.Router();
+router.get("/viewemployees",async (req,res)=>{
+    // res.send("view employees router");
+    let result=await users.find();
+    res.send(result);
+});
 
-router.get("/viewemployees",(req,res)=>{
-    res.send("view employees route");   
+router.post("/assign-task",(req,res)=>{
+    res.send("assign-tasks router");
 });
-router.post("/addemployee",(req,res)=>{
-    res.send("add employee route");
+
+router.put("/updatestatus",(req,res)=>{
+    res.send("update status router");
 });
-router.get("/viewemployee/:id",(req,res)=>{
-    res.send("view employee route");
+
+router.delete("/deleteemployee/:id",async (req,res)=>{
+    // res.send("delete employees router");
+    let result=await users.findByIdAndDelete(req.params.id);
+    if(result){
+        res.send("emp deleted");
+    }
+    else{
+        res.send("no user foundd");
+    }
+
 });
-router.delete("/deleteemployee/:id",(req,res)=>{
-    res.send("delete employee route");
-});
+
 module.exports=router;
