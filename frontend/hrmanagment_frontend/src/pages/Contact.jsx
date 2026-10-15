@@ -4,14 +4,15 @@ function Contact() {
   let [age, setAge] = useState("18")
   let [emailid, setEmailid] = useState("") 
   let [colname,setColname]=useState("VFSTR")
-  let RegisterForm=(event)=>{
+  let RegisterForm=(event) =>{
     event.preventDefault();
-    console.log({ name });
+    console.log(name);
   }
+
   return (
     <div>
       <h1>Contact Page called</h1>
-    <form onSubmit={Register}>
+    <form onSubmit={RegisterForm}>
       <input type="text" value={name} onChange={(event) => setName(event.target.value)} placeholder="Name"></input>
       <br/>
       <input type="number" value={age} onChange={(event) => setAge(event.target.value)} placeholder="enter your age"></input>
@@ -20,7 +21,7 @@ function Contact() {
       <br/>
       <input type="text" value={colname} onChange={(event) => setColname(event.target.value)} placeholder="enter your college name"></input>
       <br/>
-      <button type="submit">register</button>
+      <button type="submit" value="submit">register</button>
       <br/>
     </form>
     <p>{name}</p>
