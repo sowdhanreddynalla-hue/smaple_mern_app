@@ -1,9 +1,8 @@
-function Footer() {
-  return (
-    <footer>@copyright 2026-I AM IRON MAN
-        
-    </footer>
-  )
+function Footer(){
+    return(
+        <div>
+    <footer>@ copyrights 2026 - iron man</footer>
+        </div>
+    )
 }
-
-export default Footer;
+export default Footer

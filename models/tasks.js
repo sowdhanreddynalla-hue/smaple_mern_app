@@ -1,16 +1,5 @@
-// task name
-// desk
-// assigned to
-// assigned by
-// due Date
-// status
-// create at
-// update at
-
-
-
-const { Timestamp } = require('mongodb');
 let mongoose=require('mongoose');
+
 let taskSchema=mongoose.Schema({
     taskname:{
         type:String,
@@ -26,13 +15,13 @@ let taskSchema=mongoose.Schema({
         required:true
     },
     assignedBy:{
-        type:mongoose.Schema.Types.ObjectId,
+         type:mongoose.Schema.Types.ObjectId,
         ref:'users',
         required:true
     },
     dueDate:{
         type:Date,
-        required:true
+        require:true
     },
     status:{
         type:String,
@@ -40,9 +29,7 @@ let taskSchema=mongoose.Schema({
         default:"pending"
     }
 },{
-    Timestamp:true
+    timestamps:true
 });
-
 const tasks=mongoose.model('tasks',taskSchema);
 module.exports={tasks}
-

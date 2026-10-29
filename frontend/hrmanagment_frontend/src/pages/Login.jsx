@@ -1,75 +1,54 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+﻿import { useState } from "react"
+import { useNavigate } from "react-router-dom"
+import './PageStyles.css'
 
-function Login_page() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [error, setError] = useState("");
-  const navigate = useNavigate();
+function Login(){
+    let [email,setEmail]=useState("")
+    let [password,setPassword]=useState("")
+    let navigate=useNavigate()
 
-  const handleLogin = async (event) => {
-    event.preventDefault();
-    setError("");
+    let handleLogin=async(event)=>{
+       event.preventDefault()
+       if(email === "admin@gmail.com" && password === "admin"){
+           localStorage.setItem("currentuser", JSON.stringify({name: "admin", role: "admin"}))
+           navigate("/adminhome")
+       }else{
+          let req=await fetch("http://localhost:3000/api/emp/login", {
+            method:"POST",
+            headers:{"Content-Type":"application/json"},
+            body:JSON.stringify({email,password})
+          });
+          let data=await req.json();
+          console.log(data)
 
-    if (email === "admin@gmail.com" && password === "admin") {
-      navigate("/adminhome");
-      return;
+          if(data.user){
+            if(data.user.role === "HR"){
+              localStorage.setItem("currentuser", JSON.stringify(data.user));
+              navigate("/hrhome")
+            }else{
+              localStorage.setItem("currentuser", JSON.stringify(data.user));
+              navigate("/emphome")
+            }
+          }
+       }
     }
 
-    try {
-      const response = await fetch("http://localhost:3000/api/emp/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
-      const data = await response.json();
-     
-      if (!response.ok || !data.user) {
-        setError(data.message || "Login failed. Please try again.");
-        return;
-      }
-
-      if (data.user.role === "HR") {
-        navigate("/hrhome");
-      } else if (data.user.role === "EMPLOYEE") {
-        navigate("/emphome");
-      } else {
-        setError("Your account has an unsupported role.");
-      }
-    } catch (loginError) {
-      setError(
-        loginError instanceof Error
-          ? loginError.message
-          : "Unable to log in. Please try again.",
-      );
-    }
-  };
-
-  return (
-    <div>
-      <h1>Login page</h1>
-      <form onSubmit={handleLogin}>
-        <input
-          type="email"
-          placeholder="Enter Emailid"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          required
-        />
-        <br />
-        <input
-          type="password"
-          placeholder="Enter Password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          required
-        />
-        <br />
-        <button type="submit">Login</button>
-      </form>
-      {error && <div className="alert alert-danger">{error}</div>}
-    </div>
-  );
+    return(
+    <div className="page-shell">
+      <div className="form-card">
+        <h1 className="form-heading">Login</h1>
+        <form onSubmit={handleLogin}>
+          <div className="form-group">
+            <label className="form-label">Email</label>
+            <input className="input-field" type="email" onChange={(e)=>setEmail(e.target.value)} value={email} placeholder="Enter Emailid" />
+          </div>
+          <div className="form-group">
+            <label className="form-label">Password</label>
+            <input className="input-field" type="password" onChange={(e)=>setPassword(e.target.value)} value={password} placeholder="Enter password" />
+          </div>
+          <button className="primary-btn" type="submit">Login</button>
+        </form>
+      </div>
+    </div>)
 }
-
-export default Login_page;
+export default Login
